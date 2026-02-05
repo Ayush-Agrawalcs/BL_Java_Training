@@ -9,10 +9,10 @@ public class Unit_Conversion {
         double feet2yards=convertfeettoyards(k);
         double inches2meter=convertinchestometer(k);
         double feet2meter=convertfeettometer(k);
-        System.out.println(k+" km to miles: "+km2miles);
-        System.out.println(k+" feet to yard: "+feet2yards);
-        System.out.println(k+" inches to meter: "+inches2meter);
-        System.out.println(k+" Feet to meter: "+feet2meter);
+        System.out.println(k+" km to miles= "+km2miles);
+        System.out.println(k+" feet to yard= "+feet2yards);
+        System.out.println(k+" inches to meter= "+inches2meter);
+        System.out.println(k+" Feet to meter= "+feet2meter);
     }
     public static double convertkmtomiles(int k){
         double p=0.621371*(double)(k);

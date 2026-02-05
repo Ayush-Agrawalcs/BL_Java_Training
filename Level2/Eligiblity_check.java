@@ -3,7 +3,7 @@ import java.util.*;
 
 class StudentVoteChecker{
     public boolean canStudentVote(int age){
-        if(age>0){
+        if(age<0){
             return false;
         }
         if(age>=18){

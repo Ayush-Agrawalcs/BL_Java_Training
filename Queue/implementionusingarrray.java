@@ -28,7 +28,7 @@ class Queue{
             return -1;
         }
       
-        return arr[rear];
+        return arr[0];
     }
     public int dequeue(){
         if(rear==-1){

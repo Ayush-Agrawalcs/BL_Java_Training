@@ -85,6 +85,27 @@ public class implementation{
             }
             head=prev;
         }
+        
+        Node deleteend(Node a){
+            if(a==null){
+                return null;
+            }
+            Node c=a;
+            while(c.next.next!=null){
+                c=c.next;
+            }
+            c.next=null;
+            return a;
+            
+           
+        }
+        void deletefirst(){
+            if(head==null){
+                return ;
+            }
+            Node prev=head.next;
+            head=prev;
+        }
     }
     public static void main(String []args){
         linkedlist a=new linkedlist();
@@ -103,6 +124,16 @@ public class implementation{
         // reverse using loop
         a.reversew();
         a.print();
+
+        // deletefirst
+        a.deletefirst();
+        a.print();
         
+        // deleteatend
+        Node c=a.deleteend(a.head);
+        while(c!=null){
+            System.out.print(c.data+"-->");
+            c=c.next;
+        }
     }
 }

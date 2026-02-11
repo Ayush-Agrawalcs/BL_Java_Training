@@ -29,6 +29,20 @@ public class middlelinkedlist {
             
         }
 
+           static Node delmiddle(Node head) {
+            Node fast = head;
+            Node slow = head;
+            Node prev=null;
+            while (fast.next != null && fast.next.next!= null) {
+                prev=slow;
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+            prev.next=prev.next.next;
+            return head;
+            
+        }
+
     }
 
     public static void main(String[] args) {
@@ -47,10 +61,16 @@ public class middlelinkedlist {
         Node h = Linked.middle(a);
         System.out.println(h.data);
 
-        Node k=Linked.demiddle(a);
-        while(k!=null){
-            System.out.println(k.data);
-            k=k.next; 
+        // Node k=Linked.demiddle(a);
+        // while(k!=null){
+        //     System.out.println(k.data);
+        //     k=k.next; 
+        // }
+        
+        Node n=Linked.delmiddle(a);
+        while(n!=null){
+            System.out.print(n.data+" ");
+            n=n.next; 
         }
     }
 }

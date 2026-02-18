@@ -1,14 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
 
-interface Account{
-     public void deposite(double amount);
-     void withdraw(double amount);
+interface Deposite{
+     void deposite(double amount);
 }
-class SavingAccount implements Account{
+interface Withdraw{
+    void withdraw(double amount);
+}
+class SavingAccount1 implements Withdraw,Deposite{
     double balance;
-    SavingAccount(){
-       balance=0;
+    SavingAccount1(){
+        balance=0;
     }
     public void deposite(double amount){
         balance+=amount;
@@ -23,10 +25,10 @@ class SavingAccount implements Account{
             System.out.println("Insufficient funds in saving Account");
         }
     }
-    }
-class currentAccount implements Account{
+}
+class currentAccount1 implements Withdraw,Deposite{
     double balance;
-    currentAccount(){
+    currentAccount1(){
         balance=0;
     }
     public void deposite(double amount){
@@ -44,54 +46,50 @@ class currentAccount implements Account{
     }
 }
 
-class FixedAccount implements Account{
+class FixedAccount1 implements Deposite{
     double balance;
-    FixedAccount(){
+    FixedAccount1(){
         balance=0;
     }
     public void deposite(double amount){
         balance+=amount;
         System.out.println("Deposited "+amount + "in Fixed Account. New Balance: "+ balance +" end ");
     }
-
-    public void withdraw(double amount) {
-        throw new IllegalArgumentException("Withdraw not allowed in Fixed Term Account");
-
-    }
 }
 
 
-class BankClient {
-    private List<Account> list = new ArrayList<>();
+class BankClient1 {
+    private List<Deposite> depositAccounts;
+    private List<Withdraw> withdrawAccounts;
 
-    public BankClient(List<Account> list) {
-        this.list = list;
+    BankClient1(List<Deposite> depositAccounts, List<Withdraw> withdrawAccounts) {
+        this.depositAccounts = depositAccounts;
+        this.withdrawAccounts = withdrawAccounts;
     }
 
-    void processTransaction() {
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).deposite(1000);
-            try {
-                list.get(i).withdraw(500);
-            } catch (Exception e) {
-                System.out.println("Exception " + e);
-            }
+    void processDeposits() {
+        for (Deposite d : depositAccounts) {
+            d.deposite(1000);
+        }
+    }
+
+    void processWithdrawals() {
+        for (Withdraw w : withdrawAccounts) {
+            w.withdraw(500);
         }
     }
 }
 
+public class LoskovPrincipleCorrection {
+    public static void main(String[] args) {
+        SavingAccount1 sa=new SavingAccount1();
+        FixedAccount1 fa=new FixedAccount1();
+        currentAccount1  ca=new currentAccount1();
 
-
-    public class Loskovprinciple {
-        public static void main(String[] args) {
-            List<Account>list=new ArrayList<>();
-            list.add(new currentAccount());
-            list.add(new FixedAccount());
-            list.add(new SavingAccount());
-
-            BankClient client=new BankClient(list);
-            client.processTransaction();
-
-        }
+        List<Deposite> deposits = List.of(sa, ca, fa);
+        List<Withdraw> withdrawals = List.of(sa, ca);
+        BankClient1 ba=new BankClient1(deposits,withdrawals);
+        ba.processDeposits();
+        ba.processWithdrawals();
     }
-
+}

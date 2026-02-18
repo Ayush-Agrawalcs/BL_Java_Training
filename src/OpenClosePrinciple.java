@@ -103,7 +103,7 @@ class Savetosql extends Persistence{
 }
 
 
-public class SecondJava {
+public class OpenClosePrinciple {
     public static void main(String[] args) {
         Shoppingcarts cart=new Shoppingcarts();
         cart.addproduct(new Product("Laptop",1500));

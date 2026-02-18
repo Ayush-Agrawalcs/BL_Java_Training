@@ -69,7 +69,7 @@ class Shoppingdb{
 }
 
 
-public class Firstone {
+public class SingleResponsiblityPrinciple {
     public static void main(String[] args) {
         Shoppingcart cart=new Shoppingcart();
         cart.addproduct(new Product("Laptop",1500));
